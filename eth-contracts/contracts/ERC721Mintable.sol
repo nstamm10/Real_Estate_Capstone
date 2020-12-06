@@ -159,6 +159,7 @@ contract ERC721 is Pausable, ERC165 {
 
     function balanceOf(address owner) public view returns (uint256) {
         // TODO return the token balance of given address
+        return Counters.current(_ownedTokensCount[owner]);
         // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
     }
 
