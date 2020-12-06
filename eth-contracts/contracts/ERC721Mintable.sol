@@ -43,6 +43,7 @@ contract Ownable {
 
 //  TODO's: Create a Pausable contract that inherits from the Ownable contract
 contract Pausable is Ownable {
+
     //  Create a private '_paused' variable of type bool
     bool private _paused;
 
