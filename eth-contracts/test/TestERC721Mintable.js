@@ -9,26 +9,32 @@ contract('TestERC721Mintable', accounts => {
     const Symbol = "HOU";
     let owner;
 
-    describe('match erc721 spec', function () {
+    describe('mintable complete', function () {
         beforeEach(async function () {
             owner = account_one;
             this.contract = await ERC721MintableComplete.new({from: owner});
-            
+
             // TODO: mint multiple tokens
-            await ERC721MintableComplete
-        })
+            await this.contract.mint(account_one, 1);
+            await this.contract.mint(account_two, 2);
+
 
         it('should return total supply', async function () {
-
+            assert.equal(this.contract.totalSupply(), 2, "Error: total supply is not two");
         })
 
         it('should get token balance', async function () {
+            assert.equal(this.contract.balanceOf(account_one), 1, "Error: balance of this owner should be one");
+            assert.equal(this.contract.balanceOf(account_one), 1, "Error: balance of this owner should be one");
 
         })
 
         // token uri should be complete i.e: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1
         it('should return token uri', async function () {
-
+            assert.equal(this.contract.tokenUri(1), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1",
+                          "Error: Token Uri is incorrect");
+            assert.equal(this.contract.tokenUri(2), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/2",
+                          "Error: Token Uri is incorrect");
         })
 
         it('should transfer token from one owner to another', async function () {
