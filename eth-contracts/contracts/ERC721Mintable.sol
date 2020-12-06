@@ -79,10 +79,6 @@ contract Pausable is Ownable {
     }
 }
 
-
-
-
-
 contract ERC165 {
     bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
     /*
