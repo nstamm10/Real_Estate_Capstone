@@ -161,6 +161,7 @@ contract ERC721 is Pausable, ERC165 {
 
     function ownerOf(uint256 tokenId) public view returns (address) {
         // TODO return the owner of the given tokenId
+        require(_tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000, "No one owns this token.");
         return _tokenOwner[tokenId];
     }
 
