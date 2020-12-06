@@ -1,6 +1,6 @@
-# Udacity Blockchain Capstone
+# Blockchain Real Estate Capstone
 
-The capstone will build upon the knowledge you have gained in the course in order to build a decentralized housing product. 
+This capstone builds upon everything we have learned in the Udacity Blockchain Nanodegree program to build a decentralized housing system
 
 # Project Resources
 
