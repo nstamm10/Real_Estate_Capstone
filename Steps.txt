@@ -1,8 +1,8 @@
-1) Clone the project repository
+1) Clone the project repository (SAVED BY RASK)
 
-2) Explore the code base.
+2) Explore the code base. (SAVED BY RASK)
 
-3) Fill out ERC721 Mintable Contract in ERC721Mintable.sol
+3) Fill out ERC721 Mintable Contract in ERC721Mintable.sol (SAVED BY RASK)
 
 4) Write test cases TestERC721Mintable.js
 
