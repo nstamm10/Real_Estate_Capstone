@@ -1,0 +1,4 @@
+Nick:
+    Ownable, Pausable, ERC721
+Ben:
+    MintableComplete, Metadata, Enumerable
