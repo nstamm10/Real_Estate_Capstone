@@ -14,6 +14,8 @@
     "lite-server": "2.4.0"
   },
   "dependencies": {
+    "eth-block-tracker-es5": "^2.3.2",
+    "web3": "1.0.0-beta.34",
     "openzeppelin-solidity": "^2.2.0",
     "solc": "^0.5.2",
     "solc-js": "^0.5.2",

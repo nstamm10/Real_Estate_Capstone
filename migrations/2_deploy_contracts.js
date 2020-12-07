@@ -10,6 +10,6 @@ module.exports = function(deployer) {
 
   //deployer.deploy(Verifier)
   //.then(() => {
-    //  return deployer.deploy(SolnSquareVerifier, Verifier.address, "NFTs_ERC721MintableToken","AGT");
+    //  return deployer.deploy(SolnSquareVerifier, Verifier.address, "Houses","Hou");
   //});
 };

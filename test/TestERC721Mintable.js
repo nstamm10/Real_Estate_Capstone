@@ -68,7 +68,7 @@ contract('TestERC721Mintable', accounts => {
         })
 
         it('Can transfer ownership', async function() {
-            let transfer = instance.transferOwnership(account_two, {from: owner});
+            let transfer = await instance.transferOwnership(account_two, {from: owner});
             assert.equal(instance.getOwner({from:account_two}), account_two, "Ownership did not transfer");
             TruffleAssert.eventEmitted(transfer, 'OwnershipTransfer');
         })
