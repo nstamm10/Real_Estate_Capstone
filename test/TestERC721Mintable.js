@@ -1,4 +1,5 @@
 var ERC721MintableComplete = artifacts.require('ERC721MintableComplete');
+const TruffleAssert = require('truffle-assertions');
 
 contract('TestERC721Mintable', accounts => {
 
@@ -12,13 +13,12 @@ contract('TestERC721Mintable', accounts => {
     describe('mintable complete', function () {
         beforeEach(async function () {
             owner = account_one;
-            this.contract = await ERC721MintableComplete.new({from: owner});
+            this.contract = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
 
             // TODO: mint multiple tokens
             await this.contract.mint(account_one, 1);
             await this.contract.mint(account_two, 2);
-
-
+        })
         it('should return total supply', async function () {
             assert.equal(this.contract.totalSupply(), 2, "Error: total supply is not two");
         })
@@ -61,16 +61,16 @@ contract('TestERC721Mintable', accounts => {
         beforeEach(async function () {
             owner = account_one;
             let instance = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
-        })
+        });
 
         it('Should return Owner', async function() {
-            assert.equal(instance.getOwner({from: account_two}, owner, "Owner call does not equal contract owner");
-        })
+            assert.equal(instance.getOwner({from: account_two}), owner, "Owner call does not equal contract owner");
+        });
 
         it('Can transfer ownership', async function() {
             let transfer = await instance.transferOwnership(account_two, {from: owner});
             assert.equal(instance.getOwner({from:account_two}), account_two, "Ownership did not transfer");
             TruffleAssert.eventEmitted(transfer, 'OwnershipTransfer');
-        })
-    })
+        });
+    });
 })
