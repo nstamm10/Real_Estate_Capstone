@@ -254,7 +254,7 @@ contract ERC721 is Pausable, ERC165 {
     function _mint(address to, uint256 tokenId) internal whenNotPaused {
 
         // TODO revert if given tokenId already exists or given address is invalid
-        require(_tokenOwner[tokenId] != address(0), "Token already exists.");
+        require(_tokenOwner[tokenId] == address(0), "Token already exists.");
         require(to != address(0), "Address is invalid.");
 
         // TODO mint tokenId to given address & increase token count of owner
