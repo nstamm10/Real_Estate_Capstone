@@ -12,52 +12,87 @@ contract('TestERC721Mintable', accounts => {
     let owner;
     let instance;
 
-    describe('mintable complete', function () {
+    describe('MintableComplete.sol functionality', function () {
         beforeEach(async function () {
             owner = account_one;
             instance = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
 
             // TODO: mint multiple tokens
-            await instance.mint(account_one, 1);
-            await instance.mint(account_two, 2);
+            await instance.mint(account_one, 1, {from: owner});
+            await instance.mint(account_two, 2, {from:owner});
         })
         it('should return total supply', async function () {
-            assert.equal(instance.totalSupply(), 2, "Error: total supply is not two");
+            assert.equal(instance.totalSupply.call(), 2, "Error: total supply is not two");
         })
 
         it('should get token balance', async function () {
-            assert.equal(instance.balanceOf(account_one), 1, "Error: balance of this owner should be one");
-            assert.equal(instance.balanceOf(account_one), 1, "Error: balance of this owner should be one");
+            assert.equal(instance.balanceOf.call(account_one), 1, "Error: balance of this owner should be one");
+            assert.equal(instance.balanceOf.call(account_one), 1, "Error: balance of this owner should be one");
 
         })
 
         // token uri should be complete i.e: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1
         it('should return token uri', async function () {
-            assert.equal(instance.tokenUri(1), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1",
+            assert.equal(instance.getTokenUri.call(1), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1",
                           "Error: Token Uri is incorrect");
-            assert.equal(instance.tokenUri(2), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/2",
+            assert.equal(instance.getTokenUri.call(2), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/2",
                           "Error: Token Uri is incorrect");
         })
 
         it('should transfer token from one owner to another', async function () {
-
+            await instance.transferFrom(account_one, account_two, 1, {from: account_one});
+            assert.equal(instance.balanceOf.call(account_one), 0, "Error: Balance of this owner should be zero");
+            assert.equal(instance.balanceOf.call(account_two), 2, "Error: Balance of this owner should be two");
         })
+        it('permit account_three to transfer token from owner two to owner one', async function () {
+            //give account three permission to transfer all of account_two tokens
+            await instance.setApprovalForAll(account_three, true, {from: account_two});
+            await instance.transferFrom(account_two, account_one, 1, {from: account_three});
+            await instance.transferFrom(account_two, account_one, 2, {from: account_three});
+
+            assert.equal(instance.balanceOf.call(account_one), 2, "Error: Balance of this owner should be two");
+            assert.equal(instance.balanceOf.call(account_two), 0, "Error: Balance of this owner should be zero");
+        })
+
     });
 
     describe('have ownership properties', function () {
         beforeEach(async function () {
-            instance = await ERC721MintableComplete.new({from: account_one});
+            instance = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
         })
 
         it('should fail when minting when address is not contract owner', async function () {
-
+            await instance.mint(account_one, 1, {from: account_two});
+            //check for error? how
         })
 
         it('should return contract owner', async function () {
-
+            let own = await instance.getOwner.call();
+            assert.equal(own, owner, "Error: incorrect owner");
         })
 
     });
+
+    describe('Metadata.sol functionality', function () {
+        beforeEach(async function () {
+          instance = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
+          await instance.mint(owner, 3, {from: owner} );
+        })
+
+        it('test that each of the four getters work in Metadata', async function () {
+          //question, what if multiple tokens are minted?
+          nombre = await instance.getName.call();
+          sym = await instance.getSymbol.call();
+          baseUri = await instance.getBaseTokenURI.call();
+          tokenUri = await instance.getTokenURI(3).call();
+
+          assert.equal(nombre, Name, "Error: name is incorrect");
+          assert.equal(sym, Symbol, "Error: symbol is incorrect");
+          assert.equal(baseUri.toString(), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/", "Error: baseUri is incorrect");
+          assert.equal(tokenUri.toString(), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/3", "Error: tokenUri is incorrect");
+        })
+    })
+
 
     describe('Ownable.sol Functionality', function () {
         beforeEach(async function () {
