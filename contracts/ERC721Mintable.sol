@@ -569,7 +569,7 @@ contract ERC721MintableComplete is ERC721Metadata {
     //      -calls the superclass mint and setTokenURI functions
     function mint(address to, uint256 tokenId) public
     onlyOwner whenNotPaused returns (bool) {
-        setTokenURI(tokenId);
         super._mint(to, tokenId);
+        setTokenURI(tokenId);
     }
 }

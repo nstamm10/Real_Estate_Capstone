@@ -9,6 +9,7 @@ contract('TestERC721Mintable', accounts => {
     const Name = "Houses";
     const Symbol = "HOU";
     let owner;
+    let instance;
 
     describe('mintable complete', function () {
         beforeEach(async function () {
@@ -60,16 +61,17 @@ contract('TestERC721Mintable', accounts => {
     describe('Ownable.sol Functionality', function () {
         beforeEach(async function () {
             owner = account_one;
-            let instance = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
+            instance = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
         });
 
         it('Should return Owner', async function() {
-            assert.equal(instance.getOwner({from: account_two}), owner, "Owner call does not equal contract owner");
+            assert.equal(await instance.getOwner.call(), owner, "Owner call does not equal contract owner");
         });
 
         it('Can transfer ownership', async function() {
             let transfer = await instance.transferOwnership(account_two, {from: owner});
-            assert.equal(instance.getOwner({from:account_two}), account_two, "Ownership did not transfer");
+            let newOwner = await instance.getOwner.call();
+            assert.equal(newOwner, account_two, "Ownership did not transfer");
             TruffleAssert.eventEmitted(transfer, 'OwnershipTransfer');
         });
     });
