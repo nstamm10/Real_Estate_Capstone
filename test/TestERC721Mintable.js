@@ -63,8 +63,12 @@ contract('TestERC721Mintable', accounts => {
         })
 
         it('should fail when minting when address is not contract owner', async function () {
-            await instance.mint(account_one, 1, {from: account_two});
-            //check for error? how
+            try {
+                await instance.mint(account_one, 1, {from: account_two});
+                assert.equal(true, false, "Error was not throw.");
+            } catch (error) {
+                assert.equal(true, true);
+            }
         })
 
         it('should return contract owner', async function () {
