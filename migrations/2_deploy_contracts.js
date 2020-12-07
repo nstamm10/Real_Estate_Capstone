@@ -1,12 +1,12 @@
 // migrating the appropriate contracts
-var ERC721Mintable = artifacts.require("./ERC721Mintable.sol");
+var ERC721MintableComplete = artifacts.require("./ERC721MintableComplete.sol");
 
 //var Verifier = artifacts.require("./Verifier.sol");
 //var SolnSquareVerifier = artifacts.require("./SolnSquareVerifier.sol");
 
 module.exports = function(deployer) {
 
-  deployer.deploy(ERC721Mintable,"Houses","HOU");
+  deployer.deploy(ERC721MintableComplete, "Houses","HOU");
 
   //deployer.deploy(Verifier)
   //.then(() => {
