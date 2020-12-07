@@ -4,7 +4,7 @@
 
 3) Fill out ERC721 Mintable Contract in ERC721Mintable.sol (SAVED BY RASK)
 
-4) Write test cases TestERC721Mintable.js
+4) Write test cases TestERC721Mintable.js (SAVED BY RASK)
 
 5) Compile and pass test cases in TestERC721Mintable.js
 
