@@ -6,7 +6,7 @@
 
 4) Write test cases TestERC721Mintable.js (SAVED BY RASK)
 
-5) Compile and pass test cases in TestERC721Mintable.js
+5) Compile and pass test cases in TestERC721Mintable.js (SAVED BY RASK)
 
 6) Implement Zokrates
 
