@@ -186,7 +186,7 @@ contract ERC721 is Pausable, ERC165 {
 
     function getApproved(uint256 tokenId) public view returns (address) {
         // TODO return token approval if it exists
-        require(_tokenApprovals[tokenId] != address(0), "Token has no approved addresses.");
+        require(_exists(tokenId), "Token does not exist.");
         return _tokenApprovals[tokenId];
     }
 
@@ -246,7 +246,7 @@ contract ERC721 is Pausable, ERC165 {
      */
     function _isApprovedOrOwner(address spender, uint256 tokenId) internal view returns (bool) {
         address owner = ownerOf(tokenId);
-        return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
+        return (spender == owner || isApprovedForAll(owner, spender) || getApproved(tokenId) == spender);
     }
 
     // @dev Internal function to mint a new token

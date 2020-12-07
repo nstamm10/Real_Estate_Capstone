@@ -19,39 +19,40 @@ contract('TestERC721Mintable', accounts => {
 
             // TODO: mint multiple tokens
             await instance.mint(account_one, 1, {from: owner});
-            await instance.mint(account_two, 2, {from:owner});
+            await instance.mint(account_two, 2, {from: owner});
         })
         it('should return total supply', async function () {
-            assert.equal(instance.totalSupply.call(), 2, "Error: total supply is not two");
+            assert.equal(await instance.totalSupply.call(), 2, "Error: total supply is not two");
         })
 
         it('should get token balance', async function () {
-            assert.equal(instance.balanceOf.call(account_one), 1, "Error: balance of this owner should be one");
-            assert.equal(instance.balanceOf.call(account_one), 1, "Error: balance of this owner should be one");
+            assert.equal(await instance.balanceOf.call(account_one), 1, "Error: balance of this owner should be one");
+            assert.equal(await instance.balanceOf.call(account_one), 1, "Error: balance of this owner should be one");
 
         })
 
         // token uri should be complete i.e: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1
         it('should return token uri', async function () {
-            assert.equal(instance.getTokenUri.call(1), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1",
+            assert.equal(await instance.getTokenURI.call(1), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1",
                           "Error: Token Uri is incorrect");
-            assert.equal(instance.getTokenUri.call(2), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/2",
+            assert.equal(await instance.getTokenURI.call(2), "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/2",
                           "Error: Token Uri is incorrect");
         })
 
         it('should transfer token from one owner to another', async function () {
             await instance.transferFrom(account_one, account_two, 1, {from: account_one});
-            assert.equal(instance.balanceOf.call(account_one), 0, "Error: Balance of this owner should be zero");
-            assert.equal(instance.balanceOf.call(account_two), 2, "Error: Balance of this owner should be two");
+            assert.equal(await instance.balanceOf.call(account_one), 0, "Error: Balance of this owner should be zero");
+            assert.equal(await instance.balanceOf.call(account_two), 2, "Error: Balance of this owner should be two");
         })
         it('permit account_three to transfer token from owner two to owner one', async function () {
             //give account three permission to transfer all of account_two tokens
             await instance.setApprovalForAll(account_three, true, {from: account_two});
-            await instance.transferFrom(account_two, account_one, 1, {from: account_three});
+            let approval = await instance.isApprovedForAll.call(account_two, account_three);
+            assert.equal(approval, true, "Error with isApprovedForAll function");
             await instance.transferFrom(account_two, account_one, 2, {from: account_three});
 
-            assert.equal(instance.balanceOf.call(account_one), 2, "Error: Balance of this owner should be two");
-            assert.equal(instance.balanceOf.call(account_two), 0, "Error: Balance of this owner should be zero");
+            assert.equal(await instance.balanceOf.call(account_one), 2, "Error: Balance of this owner should be two");
+            assert.equal(await instance.balanceOf.call(account_two), 0, "Error: Balance of this owner should be zero");
         })
 
     });
@@ -84,7 +85,7 @@ contract('TestERC721Mintable', accounts => {
           nombre = await instance.getName.call();
           sym = await instance.getSymbol.call();
           baseUri = await instance.getBaseTokenURI.call();
-          tokenUri = await instance.getTokenURI(3).call();
+          tokenUri = await instance.getTokenURI.call(3);
 
           assert.equal(nombre, Name, "Error: name is incorrect");
           assert.equal(sym, Symbol, "Error: symbol is incorrect");
