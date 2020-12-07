@@ -75,4 +75,16 @@ contract('TestERC721Mintable', accounts => {
             TruffleAssert.eventEmitted(transfer, 'OwnershipTransfer');
         });
     });
+
+    describe('Pausable.sol Functionality', function() {
+        beforeEach(async function () {
+            owner = account_one;
+            instance = await ERC721MintableComplete.new(Name, Symbol, {from: owner});
+        });
+
+        it('Contract state can be paused', async function () {
+            let pause = await instance.setPaused(true, {from: owner});
+            TruffleAssert.eventEmitted(pause, 'Paused');
+        })
+    })
 })
