@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // This file is LGPL3 Licensed
-pragma solidity ^0.6.1;
+pragma solidity ^0.5.0;
 
 /**
  * @title Elliptic curve operations on twist points for alt_bn128
@@ -593,7 +593,7 @@ contract Verifier {
         proof.b = Pairing.G2Point([b[0][0], b[0][1]], [b[1][0], b[1][1]]);
         proof.c = Pairing.G1Point(c[0], c[1]);
         uint[] memory inputValues = new uint[](2);
-        
+
         for(uint i = 0; i < input.length; i++){
             inputValues[i] = input[i];
         }
