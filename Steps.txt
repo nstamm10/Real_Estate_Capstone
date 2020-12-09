@@ -12,17 +12,17 @@ Implement Zokrates
 
 6) Using Docker to install and instantiate a Zokrates zkSnarks development environment (SAVED BY RASK)
 
-7) Completes the Zokrates proof in square.code by adding the variable names in square.code
+7) Completes the Zokrates proof in square.code by adding the variable names in square.code (SAVED BY RASK)
 
-8) Compile program
+8) Compile program (SAVED BY RASK)
 
-9) Trusted setup
+9) Trusted setup (SAVED BY RASK)
 
-10) Compute witness
+10) Compute witness (SAVED BY RASK)
 
-11) Generate Proof
+11) Generate Proof (SAVED BY RASK)
 
-12) Export Verifier.sol
+12) Export Verifier.sol (SAVED BY RASK)
 
 Note: This project uses solidity version 0.5.2 so you will be required to update the code in Verifier.sol accordingly based on the compiler errors you receive
 
