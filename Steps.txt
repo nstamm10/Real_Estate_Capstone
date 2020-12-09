@@ -10,7 +10,7 @@
 
 Implement Zokrates
 
-6) Using Docker to install and instantiate a Zokrates zkSnarks development environment
+6) Using Docker to install and instantiate a Zokrates zkSnarks development environment (SAVED BY RASK)
 
 7) Completes the Zokrates proof in square.code by adding the variable names in square.code
 
