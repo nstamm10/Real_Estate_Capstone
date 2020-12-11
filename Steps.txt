@@ -36,6 +36,8 @@ Note: This project uses solidity version 0.5.2 so you will be required to update
 
 17) Deploy SolnSquareVerifier contract to Rinkeby network (SAVED BY RASK)
 
+17.5) Write Mint.js
+
 18) Mint 10 tokens
 
 19) Generate OpenSea marketplace
