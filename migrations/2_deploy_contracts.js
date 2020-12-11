@@ -10,6 +10,6 @@ module.exports = function(deployer) {
 
   deployer.deploy(Verifier)
   .then(() => {
-      return deployer.deploy(SolnSquareVerifier, Verifier.address, "Ji_Man_Choi_Token","JMCT");
+      return deployer.deploy(SolnSquareVerifier, Verifier.address, "Stamm_ERC721_Token","SERC");
   });
 };
