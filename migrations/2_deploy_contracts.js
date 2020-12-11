@@ -6,10 +6,10 @@ var SolnSquareVerifier = artifacts.require("./SolnSquareVerifier.sol");
 
 module.exports = function(deployer) {
 
-  deployer.deploy(ERC721MintableComplete, "Houses","HOU");
+  //deployer.deploy(ERC721MintableComplete, "Houses","HOU");
 
   deployer.deploy(Verifier)
   .then(() => {
-      return deployer.deploy(SolnSquareVerifier, Verifier.address, "Houses","Hou");
+      return deployer.deploy(SolnSquareVerifier, Verifier.address, "Ji_Man_Choi_Token","JMCT");
   });
 };
