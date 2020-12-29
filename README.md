@@ -13,6 +13,15 @@ This capstone builds upon everything we have learned in the Udacity Blockchain N
 * [Docker](https://docs.docker.com/install/)
 * [ZoKrates](https://github.com/Zokrates/ZoKrates)
 
+# Dependencies
+"eth-block-tracker-es5": "^2.3.2",
+"web3": "1.0.0-beta.34",
+"openzeppelin-solidity": "^2.2.0",
+"solc": "^0.5.2",
+"solc-js": "^0.5.2",
+"truffle-assertions": "^0.9.2",
+"truffle-hdwallet-provider": "^1.0.17"
+
 Contract Address: 0xaAb5D805ad09b85d4130314b75e29860557a1dd3
 
 Contract Abi:
