@@ -13,7 +13,7 @@ This capstone builds upon everything we have learned in the Udacity Blockchain N
 * [Docker](https://docs.docker.com/install/)
 * [ZoKrates](https://github.com/Zokrates/ZoKrates)
 
-# Dependencies
+# Dependencies and Contract Information
 "eth-block-tracker-es5": "^2.3.2",
 "web3": "1.0.0-beta.34",
 "openzeppelin-solidity": "^2.2.0",
