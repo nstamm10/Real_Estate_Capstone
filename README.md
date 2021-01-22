@@ -2,6 +2,14 @@
 
 This capstone builds upon everything we have learned in the Udacity Blockchain Nanodegree program to build a decentralized housing system
 
+# Steps to run tests
+
+Connect metamask account to the code via truffle-config.js file
+truffle compile
+truffle migrate
+truffle test
+
+
 # Project Resources
 
 * [Remix - Solidity IDE](https://remix.ethereum.org/)
